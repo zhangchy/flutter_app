@@ -1,0 +1,24 @@
+{
+    "home": {
+        "news": "news",
+        "game": "game",
+        "bbs": "bbs",
+        "my": "my"
+    },
+    "news": {
+        "zixun": "zixun",
+        "gonglue": "gonglue",
+        "pingce": "pingce",
+        "shendu": "deep"
+    },
+    "loading": "Loading",
+    "ScrollComponents": "ScrollComponents",
+    "Common": "Common",
+    "Form": "Form",
+    "Regular": "Regular",
+    "Navigator": "Navigator",
+    "BulletBox": "BulletBox",
+    "Animate": "Animate",
+    "Gestures": "Gestures",
+    "Vision": "Vision"
+}
