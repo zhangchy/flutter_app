@@ -26,7 +26,6 @@ class GamePageState extends State<GamePage> with AutomaticKeepAliveClientMixin<G
   @override
   bool get wantKeepAlive => true;
 
-  bool isLoading;
   GameInfoModel gameInfoModel;
   @override
   void initState() {
@@ -493,8 +492,9 @@ class GameSale extends StatelessWidget {
   
   int maxCount = 0;
   _swiperItemWrap(int page) {
-    maxCount < saleList[page].list.length ? maxCount = saleList[page].list.length : maxCount = maxCount;
-    print(maxCount);
+    if(saleList[page].list != null && maxCount < saleList[page].list.length) {
+     maxCount = saleList[page].list.length;
+    }
     SaleListItem item = saleList[page];
     int endTime = item.endTime + 24 * 60 * 60;
     String start = CommonUtils.isEqualYear(item.startTime, (DateTime.now().millisecondsSinceEpoch / 1000).floor()) ? CommonUtils.getMonth(item.startTime) : CommonUtils.getDate2Month(item.startTime);
@@ -502,13 +502,14 @@ class GameSale extends StatelessWidget {
     
     List<Widget> pageWidgets = [];
     int index = 0;
-    item.list.forEach((gameSaleItem) {
-      pageWidgets.add(
-        _inkWellItem(page, index)
-      );
-      index++;
-    });
-
+    if(item.list != null) {
+      item.list.forEach((gameSaleItem) {
+        pageWidgets.add(
+          _inkWellItem(page, index)
+        );
+        index++;
+      });
+    }
     return Container(
       child: Column(
         children: [
@@ -525,6 +526,9 @@ class GameSale extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int page = 0;
+    print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
+    print(saleList.length);
+    print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
     saleList.forEach((item){
       swiperViews.add(_swiperItemWrap(page));
       page++;
